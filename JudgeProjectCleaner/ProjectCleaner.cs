@@ -1,23 +1,32 @@
-﻿using System.Net.Security;
-
-namespace JudgeProjectCleaner
+﻿namespace JudgeProjectCleaner
 {
     public class ProjectCleaner
     {
         private static readonly string[] removableDirectories = { "bin", "obj" };
 
-        public static void CleanSolution(string path)
+        public static string CleanSolution(string path)
         {
             if (isPathValid(path))
             {
+                int deleteCount = 0;
+
                 for (int i = 0; i < removableDirectories.Length; i++)
                 {
                     var directories = Directory.GetDirectories(path, removableDirectories[i], SearchOption.AllDirectories);
-                    RemoveDirectories(directories);
+
+                    if (directories.Length > 0)
+                    {
+                        deleteCount += directories.Length;
+                        RemoveDirectories(directories);
+                    }
                 }
 
-                Console.WriteLine();
-                Console.WriteLine("Successfully deleted all unnecessary directories.");
+                if (deleteCount == 0)
+                {
+                    return "There is nothing to delete.";
+                }
+
+                return $"Successfully deleted {deleteCount} directories from your solution.";
             }    
             else
             {

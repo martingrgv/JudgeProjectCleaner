@@ -9,16 +9,18 @@
 
             string? path = Console.ReadLine();
 
+            Console.WriteLine();
+
             try
             {
                 if (path != string.Empty && 
                     path != null)
                 {
-                    ProjectCleaner.CleanSolution(path);
+                    Console.WriteLine(ProjectCleaner.CleanSolution(path).Trim());
                 }
                 else
                 {
-                    throw new InvalidOperationException("Empty path!");
+                    throw new ArgumentException("Empty path!");
                 }
             }
             catch (Exception e)
