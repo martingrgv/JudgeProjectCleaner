@@ -5,7 +5,7 @@
     /// </summary>
     public sealed class FolderManagerService
     {
-        private static readonly string[] defaultRemovableDirectories = { "bin", "obj" };
+        private static readonly string[] defaultPattern = { "bin", "obj" };
 
         /// <summary>
         /// Returns whether the removal was successfull or not.
@@ -17,7 +17,7 @@
         {
             if (isPathValid(path))
             {
-                var directories = FindDirectories(path, defaultRemovableDirectories);
+                var directories = FindDirectories(path, defaultPattern);
                 int deletedDirectoriesCount = DeleteDirectories(directories);
 
                 if (deletedDirectoriesCount == 0)
