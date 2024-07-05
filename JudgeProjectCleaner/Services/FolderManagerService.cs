@@ -17,15 +17,7 @@
         {
             if (isPathValid(path))
             {
-                var directories = FindDirectories(path, defaultPattern);
-                int deletedDirectoriesCount = DeleteDirectories(directories);
-
-                if (deletedDirectoriesCount == 0)
-                {
-                    return "There is nothing to delete.";
-                }
-
-                return $"Successfully deleted {deletedDirectoriesCount} directories from your solution.";
+                return RemoveDirectoryiesByPattern(path, defaultPattern);
             }
             else
             {
@@ -33,6 +25,37 @@
             }
         }
 
+        /// <summary>
+        /// Returns whether the removal was successfull or not.
+        /// </summary>
+        /// <param name="path">path to .sln file</param>
+        /// <param name="directoriesPattern">directory search pattern</param>
+        /// <returns>Result of deletion.</returns>
+        /// <exception cref="FileNotFoundException"></exception>
+        public static string RemoveUnnecesseryDirectories(string path, string[] directoriesPattern)
+        {
+            if (isPathValid(path))
+            {
+                return RemoveDirectoryiesByPattern(path, directoriesPattern);
+            }
+            else
+            {
+                throw new FileNotFoundException($"Unable to find solution in directory: {path}");
+            }
+        }
+
+        private static string RemoveDirectoryiesByPattern(string path, string[] pattern)
+        {
+            var directories = FindDirectories(path, pattern);
+            int deletedDirectoriesCount = DeleteDirectories(directories);
+
+            if (deletedDirectoriesCount == 0)
+            {
+                return "There is nothing to delete.";
+            }
+
+            return $"Successfully deleted {deletedDirectoriesCount} directories from your solution.";
+        }
 
         private static bool isPathValid(string path)
         {
