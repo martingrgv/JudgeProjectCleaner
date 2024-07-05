@@ -1,6 +1,8 @@
-﻿namespace JudgeProjectCleaner
+﻿using JudgeProjectCleaner.Services;
+
+namespace JudgeProjectCleaner
 {
-    public class Program
+    public class Startup
     {
         static void Main(string[] args)
         {
@@ -16,7 +18,7 @@
                 if (path != string.Empty && 
                     path != null)
                 {
-                    Console.WriteLine(ProjectCleaner.CleanSolution(path).Trim());
+                    Console.WriteLine(FolderManagerService.RemoveUnnecesseryDirectories(path).Trim());
                 }
                 else
                 {
