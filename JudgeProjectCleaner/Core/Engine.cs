@@ -29,14 +29,14 @@ public class Engine : IEngine
             return;
         }
 
-        // try
+        try
         {
             string result = _controller.ArchiveProject(path, EXCLUDED_ENTRIES);
             Console.WriteLine(result);
         }
-        // catch (Exception e)
+        catch (Exception e)
         {
-            // Console.WriteLine(e.Message);
+            Console.WriteLine(e.Message);
         }
     }
 }
