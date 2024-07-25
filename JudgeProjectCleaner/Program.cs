@@ -16,6 +16,14 @@ namespace JudgeProjectCleaner
             var controller = serviceProvider.GetRequiredService<IController>();
 
             Engine engine = new Engine(controller);
+
+            if (args != null &&
+                args.Length > 0)
+            {
+                engine.Run(args);               
+                return;
+            }
+
             engine.Run();
         }
     }
