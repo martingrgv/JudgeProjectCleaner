@@ -16,7 +16,7 @@ public class Controller : IController
     {
         if (!Directory.Exists(path))
         {
-            throw new ArgumentException("Invalid path! Possibly not existing!");
+            throw new ArgumentException("Invalid path! Directory doesn't exist!");
         }
         else if (!DirectoryHelper.HasValidPath(path, $"{Path.GetFileName(path)}.csproj"))
         {
@@ -34,8 +34,6 @@ public class Controller : IController
         List<string> entries = new List<string>();
         DirectoryHelper.AddEntries(entries, path, excludedEntries);
 
-        return _zipArchiver.ArchiveFolder(path, filename, entries) +
-            Environment.NewLine +
-            $"Archive is inside {path}";
+        return _zipArchiver.ArchiveFolder(path, filename, entries);
     }
 }

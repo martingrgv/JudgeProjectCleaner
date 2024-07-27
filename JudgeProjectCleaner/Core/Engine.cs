@@ -34,12 +34,23 @@ public class Engine : IEngine
 
     public void Run(string[] args)
     {
-        _path = args[0];
-
-        if (string.IsNullOrWhiteSpace(_path))
+        switch (args[0])
         {
-            Console.WriteLine("Path must be set!");
-            return;
+            case "-p":
+                if (args.Length == 2)
+                {
+                    if (string.IsNullOrWhiteSpace(args[1]))
+                    {
+                        Console.WriteLine("Could not find valid path!");
+                        return;
+                    }
+
+                    _path = args[1];
+                }
+                break;
+            default:
+                Console.WriteLine("Invalid arguments");
+                return;
         }
 
         ExecuteCommands();
@@ -51,7 +62,7 @@ public class Engine : IEngine
 
         try
         {
-            string result = _controller.ArchiveProject(_path, EXCLUDED_ENTRIES);
+            string result = _controller.ArchiveProject(_path!, EXCLUDED_ENTRIES);
             Console.WriteLine(result);
         }
         catch (Exception e)

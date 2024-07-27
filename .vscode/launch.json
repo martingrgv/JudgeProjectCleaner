@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Launch With Args",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/JudgeProjectCleaner/bin/Debug/net6.0/JudgeProjectCleaner.dll",
+            "args": [
+                "-p",
+                "/Users/martinwlsngrgv/Development/SoftUni-Study/CSharpDB/02.EntityFrameworkCore/05.JavaScriptObjectNotation-JSON/ProductShop"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        }
+    ]
+}
