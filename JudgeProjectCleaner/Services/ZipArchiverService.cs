@@ -10,7 +10,7 @@ public class ZipArchiverService : IZipArchiverService
     {
         string fullPath = Path.Combine(path, filename);
 
-        using (FileStream fileStream = new FileStream(fullPath, FileMode.OpenOrCreate))
+        using (FileStream fileStream = new FileStream(fullPath, FileMode.Create))
         {
             using (ZipArchive archive = new ZipArchive(fileStream, ZipArchiveMode.Update))
             {
