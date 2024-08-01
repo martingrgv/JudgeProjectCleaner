@@ -56,6 +56,6 @@ public static class DirectoryHelper
 
     public static string CutPathFromName(string path, string entry)
     {
-        return new string(entry.Replace(path, string.Empty));
+        return Path.GetRelativePath(path, entry);
     }
 }
